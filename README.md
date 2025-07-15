@@ -15,3 +15,28 @@ MultinomialNB: 使用 Naive Bayes 模型分類
 train_test_split: 切成訓練集與測試集
 classification_report: 印出分類指標報告
 accuracy_score: 顯示整體準確率
+<<step 1>>匯入套件
+import pandas as pd
+import jieba
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.naive_bayes import MultinomialNB
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import classification_report, accuracy_score
+<<step 2>>讀取資料與斷詞處理
+df = pd.read_excel("整合後所有負評資料.xlsx")
+df['斷詞'] = df['評論內容'].apply(lambda x: list(jieba.cut(x)))
+<<step 3>>轉為TF-IDF向量格式
+def jieba_cut(text):
+    return " ".join(jieba.cut(str(text)))
+df["斷詞"] = df["評論內容"].apply(jieba_cut)
+tfidf = TfidfVectorizer()
+X = tfidf.fit_transform(df["斷詞"])
+<<step 4>>建立模型並訓練
+y = df["分類標籤"]
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+model = MultinomialNB()
+model.fit(X_train, y_train)
+<<step 5>>預測與評估
+y_pred = model.predict(X_test)
+print("\n分類準確度：", accuracy_score(y_test, y_pred))
+print("\n分類報告：\n", classification_report(y_test, y_pred))

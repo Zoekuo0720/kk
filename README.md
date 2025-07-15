@@ -8,3 +8,10 @@
 6️⃣ | 模型建立與訓練    使用 Naive Bayes 訓練分類模型                 
 7️⃣ | 預測與評估        顯示準確率與分類報告（precision、recall、f1-score） 
 
+pandas: 處理 Excel 表格與資料結構（DataFrame）
+jieba: 中文斷詞
+TfidfVectorizer: 將斷詞轉成數字（TF-IDF 向量）
+MultinomialNB: 使用 Naive Bayes 模型分類
+train_test_split: 切成訓練集與測試集
+classification_report: 印出分類指標報告
+accuracy_score: 顯示整體準確率

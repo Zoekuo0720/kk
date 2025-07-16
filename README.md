@@ -71,7 +71,7 @@ plt.axis("off")
 plt.title("TF-IDF 文字雲：評論關鍵字")
 plt.show()
 
-#矩陣圖
+# 矩陣圖
 plt.rcParams['font.family'] = 'Microsoft JhengHei'  # 使用微軟正黑體
 df['分類標籤'].value_counts().plot(kind='bar', figsize=(10,5), title='各分類標籤數量')
 plt.xlabel("分類")
@@ -80,7 +80,7 @@ plt.xticks(rotation=45)
 plt.tight_layout()
 plt.show()
 
-#混淆矩陣圖
+# 混淆矩陣圖
 from sklearn.metrics import ConfusionMatrixDisplay
 ConfusionMatrixDisplay.from_estimator(model, X_test, y_test, xticks_rotation='vertical')
 plt.title("分類預測混淆矩陣")
